@@ -55,7 +55,7 @@
   "name": "TISSOT LE LOCLE POWERMATIC 80 T006.407.22.033.00",
   "description": "NAM – AUTOMATIC – MẶT SỐ 39.3 MM, TRỮ CÓT 80 GIỜ, GUILLOCHÉ",
   "image": "https://cdn3.dhht.vn/wp-content/uploads/2018/05/95_T006.407.22.033.00-1-699x699.jpg",
-  "slug": "Watch5",
+  "slug": "Watch6\n",
   "videoId": "https://youtu.be/qjzeLSSS5oo",
   "details": "Mẫu đồng hồ T006.407.22.033.00 nổi bật cùng các chi tiết núm vặn cho đến nền cọc số phong cách chữ la mã tạo nét mỏng cách tân khoác lên vẻ sang trọng thời trang cho phái mạnh đến từ thương hiệu Tissot."
 },{
@@ -65,8 +65,8 @@
   "name": "TISSOT LE LOCLE POWERMATIC 80 T006",
   "description": "NAM – AUTOMATIC – MẶT SỐ 39.3MM, TRỮ CÓT 80 GIỜ, GUILLOCHÉ",
   "image": "https://cdn3.dhht.vn/wp-content/uploads/2017/09/T006.407.36.263.00-699x699.jpg",
-  "slug": "Watch5",
-  "videoId": "https://youtu.be/Cugbuz4jeiY",
+  "slug": "Watch7",
+  "videoId": "https://www.youtube.com/embed/AYcjQRaM7ZI",
   "details": "Chiếc đồng hồ Tissot T006.407.36.263.00 thuộc bộ sưu tập Tissot Le Locle Powermatic 80 mang đến sự sang trọng và lịch lãm dành cho quý ông. Sử dụng bộ máy cơ tự động có thời gian trữ cót lên đến 80 giờ."
 },{
   "_id": {
@@ -75,7 +75,28 @@
   "name": "TISSOT T006.407",
   "description": "NAM – KÍNH SAPPHIRE – AUTOMATIC (TỰ ĐỘNG) – DÂY DA",
   "image": "https://cdn3.dhht.vn/wp-content/uploads/2017/07/T006.407.16.033.00-1-699x699.jpg",
-  "slug": "Watch6",
+  "slug": "Watch8",
   "videoId": "https://youtu.be/_ccH4sIwmoY",
   "details": "Mẫu Tissot T006.407.16.033.00 với thiết kế chữ số được in theo phong cách chữ la mã mang đậm nét cổ điển trên nền mặt kính Sapphire, kết hợp cùng dây đeo bằng da có vân tăng thêm vẻ lịch lãm."
+},{
+  "_id": {
+    "$oid": "633792deee526ac4173ffb09"
+  },
+  "name": "CASIO LTP-V300L-4AUDF",
+  "description": "NỮ – QUARTZ (PIN) – DÂY DA",
+  "image": "https://cdn3.dhht.vn/wp-content/uploads/2017/08/LTP-V300L-4AUDF-699x699.jpg",
+  "videoId": "https://www.youtube.com/watch?v=aBNzzC6vIhg&t=1s",
+  "details": "Đồng hồ nữ Casio LTP-V300L-4AUDF thiết kế dành cho nữ với màu sắc nhẹ nhàng, vỏ máy bằng thép không gỉ, kim đồng hồ và vạch số với kiểu dáng thanh mảnh.",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1664586462694"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1664586462694"
+    }
+  },
+  "slug": "casio-ltp-v300l-4audf",
+  "__v": 0
 }]

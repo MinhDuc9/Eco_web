@@ -21,9 +21,23 @@ class ProductController {
         const product = new Product(req.body);
         product.save()
             .then(() => res.redirect('/'))
-            .catch(error => {
-                
-            });
+            .catch(error => {});
+    }
+
+    // [GET] /products/:id/edit
+    edit(req, res, next) {
+        Product.findById(req.params.id)
+            .then(product => res.render('products/edit', {
+                product: mongooseToObject(product)
+            }))
+            .catch(next);
+    }
+
+    // [PUT] /products/:id
+    update(req, res, next) {
+        Product.updateOne({ _id: req.params.id }, req.body)
+            .then(() => res.redirect('/user/stored/products'))
+            .catch(next)
     }
 }
 

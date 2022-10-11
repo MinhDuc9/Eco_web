@@ -1,6 +1,8 @@
 <div class="mt-4">
-    <h3>My products</h3>
-
+    <div>
+      <h3>My products</h3>
+      <a href="/user/trash/products">Recycle bin</a>
+    </div>
     <table class="table mt-4">
         <thead>
             <tr>
@@ -22,6 +24,13 @@
                     <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-product-modal">Delete</a>
                 </td>
             </tr>
+            {{else}}
+              <tr>
+                <td colspan="5" class="text-center">
+                  You have no products in store
+                  <a href="/products/create">post new product here</a>
+                </td>
+              </tr>
             {{/each}}
         </tbody>
     </table>
@@ -65,6 +74,7 @@
             productId = button.data('id');
         });
         
+        // When delete product btn clicked
         btnDeleteProduct.onclick = function() {
             deleteForm.action = '/products/' + productId + '?_method=DELETE';
             deleteForm.submit();

@@ -11,6 +11,14 @@ class UserController {
             .catch(next);
     }
     
+    // [GET] /user/trash/products
+    trashProducts(req, res, next) {
+        Product.findDeleted({})
+            .then(products => res.render('user/trash-products', {
+                products: mutipleMongooseToObject(products)
+            }))
+            .catch(next);
+    }
 }
 
 module.exports = new UserController;

@@ -4,10 +4,14 @@ const  { mutipleMongooseToObject } = require('../../ulti/mongoose')
 class UserController {
     // [GET] /user/stored/products
     storedProducts(req, res, next) {
-        Product.find({})
-            .then(products => res.render('user/stored-products', {
-                products: mutipleMongooseToObject(products)
-            }))
+
+        Promise.all([Product.find({}), Product.countDocumentsDeleted()])
+            .then(([products, deletedCount]) => {
+                res.render('user/stored-products', {
+                    deletedCount: deletedCount,
+                    products: mutipleMongooseToObject(products),
+                })
+            })
             .catch(next);
     }
     

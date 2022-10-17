@@ -60,6 +60,19 @@ class ProductController {
             .then(() => res.redirect('back'))
             .catch(next)
     }
+    
+    // [POST] /products/handle-form-action
+    handleFormAction(req, res, next) {
+        switch(req.body.action) {
+            case 'delete':
+                Product.delete({ _id: { $in: req.body.productIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next)
+                break;
+            default:
+                res.json({ message: 'Error'});
+        }
+    }
 }
 
 module.exports = new ProductController;

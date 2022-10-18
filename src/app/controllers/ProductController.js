@@ -73,6 +73,18 @@ class ProductController {
                 res.json({ message: 'Error'});
         }
     }
+
+    deleteFormAction(req, res, next) {
+        switch(req.body.action) {
+            case 'delete':
+                Product.deleteOne({ _id: { $in: req.body.productIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next)
+                break;
+            default:
+                res.json({ message: 'Error' });
+        }
+    }
 }
 
 module.exports = new ProductController;

@@ -81,10 +81,16 @@ class ProductController {
                     .then(() => res.redirect('back'))
                     .catch(next)
                 break;
+            case 'restore':
+                Product.restore({ _id: { $in: req.body.productIds }})
+                    .then(() => res.redirect('back'))
+                    .catch(next)
+                break;
             default:
                 res.json({ message: 'Error' });
         }
     }
+
 }
 
 module.exports = new ProductController;

@@ -5,7 +5,15 @@ class UserController {
     // [GET] /user/stored/products
     storedProducts(req, res, next) {
 
-        Promise.all([Product.find({}), Product.countDocumentsDeleted()])
+        let productQuery = Product.find({});
+
+        if (req.query.hasOwnProperty('_sort')) {
+            productQuery = productQuery.sort({
+                [req.query.column]: req.query.type
+            });
+        }
+
+        Promise.all([productQuery, Product.countDocumentsDeleted()])
             .then(([products, deletedCount]) => {
                 res.render('user/stored-products', {
                     deletedCount: deletedCount,

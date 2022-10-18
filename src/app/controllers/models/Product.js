@@ -11,6 +11,7 @@ const Product = new Schema(
         image: { type: String, },
         videoId: { type: String, required: true },
         details: { type: String, },
+        price: { type: Number, required: true },
         slug: { type: String, slug: 'name', unique: true },
     }, {
         timestamps: true,

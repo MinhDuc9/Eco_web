@@ -1,12 +1,30 @@
-<div class="mt-4">
+<form class="mt-4" name="container-form" method="POST" action="/products/delete-form-action">
     <div>
       <a href="/user/stored/products">Return</a>
       <h3>Deleted products</h3>
+
+      <div class="mt-4 d-flex align-items-center">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+          <label class="form-check-label" for="checkbox-all">
+            Select all
+          </label>
+        </div>
+
+        <select class="form-control form-control-sm checkbox-select-all-options" name="action" required>
+          <option value="">-- Select option --</option>
+          <option value="delete">Delete</option>
+        </select>
+
+        <button class="btn btn-primary btn-sm check-all-submit-btn disabled">
+          Apply
+        </button>
+      </div>
     </div>
     <table class="table mt-4">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col" colspan="2">#</th>
                 <th scope="col">Product name</th>
                 <th scope="col">Description</th>
                 <th scope="col" colspan="2">Details</th>
@@ -15,6 +33,11 @@
         <tbody>
             {{#each products}}
             <tr>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="productIds[]" value="{{this._id}}">
+                  </div>
+                </td>
                 <th scope="row">{{sum @index 1}}</th>
                 <td>{{this.name}}</td>
                 <td>{{this.description}}</td>
@@ -34,7 +57,7 @@
             {{/each}}
         </tbody>
     </table>
-</div>
+</form>
 
 {{!-- Confirm delete product --}}
 
@@ -70,6 +93,11 @@
         var btnDeleteProduct = document.getElementById('btn-delete-product');
         var restoreBtn = $('.btn-restore');
 
+        var checkboxAll = $('#checkbox-all');
+        var productItemCheckBox = $('input[name="productIds[]"]');
+        var checkAllSubmitBtn = $('.check-all-submit-btn');
+        var containerForm = document.forms['container-form'];
+
         // When dialog confirm clicked
         $('#delete-product-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
@@ -91,6 +119,40 @@
           restoreForm.action = '/products/' + productId + '/restore?_method=PATCH';
           restoreForm.submit();
         })
+
+        // Checkbox all changed
+        checkboxAll.change(function () {
+          var isCheckedAll = $(this).prop('checked');
+          productItemCheckBox.prop('checked', isCheckedAll);
+          renderCheckAllSubmitBtn();
+        });
+        
+        // Check all submit button click
+        checkAllSubmitBtn.on('submit', function (e) {
+          var isSubmittable = !$(this).hasClass('disabled');
+          if (!isSubmittable) {
+            e.preventDefault();
+          }
+        })
+        
+        // Product item checkbox changed
+        // If one is not checked => checked all will untick
+        productItemCheckBox.change(function () {
+          var isCheckedAll = productItemCheckBox.length === $('input[name="productIds[]"]:checked').length;
+          checkboxAll.prop('checked', isCheckedAll);
+          renderCheckAllSubmitBtn();
+        })
+
+        // Re-render check all submit btn
+        function renderCheckAllSubmitBtn() {
+          var checkedCount = $('input[name="productIds[]"]:checked').length;
+          
+          if (checkedCount > 0) {
+            checkAllSubmitBtn.removeClass('disabled');
+          } else {
+            checkAllSubmitBtn.addClass('disabled');
+          }
+        }
     });
     
 </script>

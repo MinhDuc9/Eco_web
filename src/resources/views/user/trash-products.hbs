@@ -1,19 +1,13 @@
-<form class="mt-4" name="container-form" method="POST" action="/products/delete-form-action">
+<form class="mt-4" name="container-form" method="POST" action="/products/recycleBin-form-action">
     <div>
       <a href="/user/stored/products">Return</a>
       <h3>Deleted products</h3>
 
       <div class="mt-4 d-flex align-items-center">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
-          <label class="form-check-label" for="checkbox-all">
-            Select all
-          </label>
-        </div>
-
         <select class="form-control form-control-sm checkbox-select-all-options" name="action" required>
           <option value="">-- Select option --</option>
           <option value="delete">Delete</option>
+          <option value="restore">Restore</option>
         </select>
 
         <button class="btn btn-primary btn-sm check-all-submit-btn" disabled>
@@ -24,7 +18,15 @@
     <table class="table mt-4">
         <thead>
             <tr>
-                <th scope="col" colspan="2">#</th>
+                <th>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+                    <label class="form-check-label" for="checkbox-all">
+                      Select all
+                    </label>
+                  </div>
+                </th>
+                <th scope="col">#</th>
                 <th scope="col">Product name</th>
                 <th scope="col">Price</th>
                 <th scope="col">Description</th>

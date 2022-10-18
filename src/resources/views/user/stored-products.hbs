@@ -16,7 +16,7 @@
           <option value="delete">Delete</option>
         </select>
 
-        <button class="btn btn-primary btn-sm check-all-submit-btn disabled">
+        <button class="btn btn-primary btn-sm check-all-submit-btn" disabled>
           Apply
         </button>
       </div>
@@ -91,10 +91,13 @@
         var productId;
         var deleteForm = document.forms['delete-product-form'];
         var btnDeleteProduct = document.getElementById('btn-delete-product');
+        
         var checkboxAll = $('#checkbox-all');
         var productItemCheckBox = $('input[name="productIds[]"]');
         var checkAllSubmitBtn = $('.check-all-submit-btn');
-        var containerForm = document.forms['container-form'];
+        var containerForm = $('form[name="container-form"]');
+
+        console.log(containerForm)
 
         // When dialog confirm clicked
         $('#delete-product-modal').on('show.bs.modal', function (event) {
@@ -115,34 +118,24 @@
           renderCheckAllSubmitBtn();
         });
         
-        // Check all submit button click
-        checkAllSubmitBtn.on('submit', function (e) {
-          var isSubmittable = !$(this).hasClass('disabled');
-          if (!isSubmittable) {
-            e.preventDefault();
-          }
-        })
-        
         // Product item checkbox changed
         // If one is not checked => checked all will untick
         productItemCheckBox.change(function () {
           var isCheckedAll = productItemCheckBox.length === $('input[name="productIds[]"]:checked').length;
           checkboxAll.prop('checked', isCheckedAll);
           renderCheckAllSubmitBtn();
-        })
+        });
 
         // Re-render check all submit btn
         function renderCheckAllSubmitBtn() {
           var checkedCount = $('input[name="productIds[]"]:checked').length;
           
           if (checkedCount > 0) {
-            checkAllSubmitBtn.removeClass('disabled');
+            checkAllSubmitBtn.attr('disabled', false);
           } else {
-            checkAllSubmitBtn.addClass('disabled');
+            checkAllSubmitBtn.attr('disabled', true);
           }
-        }
-
-        console.log(containerForm)
+        };
     });
     
 </script>
